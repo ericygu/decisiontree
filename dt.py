@@ -81,14 +81,14 @@ class DecisionTree(object):
         self : object
         """
 
-        def splitter(mat, arr, feature, split_factor):
+        def splitter(feature, split_factor, mat, arr):
             # feature and split_factor should both be some numerical value
 
-            split_a = mat[mat[:, feature] >= split_factor]
-            split_b = arr[mat[:, feature] >= split_factor]
+            split_a = mat[mat[:, feature] > split_factor]
+            split_b = arr[mat[:, feature] > split_factor]
 
-            split_c = mat[mat[:, feature] < split_factor]
-            split_d = arr[mat[:, feature] < split_factor]
+            split_c = mat[mat[:, feature] <= split_factor]
+            split_d = arr[mat[:, feature] <= split_factor]
 
             return [split_a, split_b], [split_c, split_d]
 
@@ -99,7 +99,7 @@ class DecisionTree(object):
             feat = 0
             val = mat[0][0]
 
-            split_a, split_b = splitter(mat, arr, feat, val)
+            split_a, split_b = splitter(feat, val, mat, arr)
 
             a_one = split_a[1]
             b_one = split_b[1]
@@ -115,7 +115,7 @@ class DecisionTree(object):
 
                     min_leaf = self.minLeafSample
 
-                    split_c, split_d = splitter(mat, arr, feature, value)
+                    split_c, split_d = splitter(feature, value, mat, arr)
 
                     c_one = split_c[1]
                     d_one = split_d[1]
@@ -131,10 +131,10 @@ class DecisionTree(object):
                         cri_value = cri_value_c + cri_value_d
 
                         if cri_value < split_value:
-                            split_a = split_c
-                            split_b = split_d
                             feat = feature
                             val = value
+                            split_a = split_c
+                            split_b = split_d
                             split_value = cri_value
 
             return split_a, split_b, [feat, val]

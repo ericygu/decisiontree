@@ -52,9 +52,9 @@ def acc(model, classifier, xFeat, y, xTest, yTest):
     accuracy = accuracy_score(yTest['label'], predict_y)
 
     if classifier == 'knn':
-        print("knn percent accuracy: " + str(round(accuracy, 5)))
+        print("knn accuracy: " + str(round(accuracy, 5)))
     else:
-        print("decision tree percent accuracy: " + str(round(accuracy, 5)))
+        print("decision tree accuracy: " + str(round(accuracy, 5)))
     return accuracy
 
 
