@@ -37,13 +37,13 @@ def auc(model, classifier, xFeat, y, xTest, yTest):
     model.fit(xFeat, y['label'])
     predict_probability = model.predict_proba(xTest)
     fpr, tpr, thresh = metrics.roc_curve(yTest, predict_probability[:, 1])
-    auc_percent = metrics.auc(fpr, tpr)
+    auc_calc = metrics.auc(fpr, tpr)
 
     if classifier == 'knn':
-        print("knn percent auc: " + str(round(auc_percent * 100, 2)) + "%")
+        print("knn auc: " + str(round(auc_calc, 5)))
     else:
-        print("decision tree percent auc: " + str(round(auc_percent * 100, 2)) + "%")
-    return auc_percent
+        print("decision tree auc: " + str(round(auc_calc, 5)))
+    return auc_calc
 
 
 def acc(model, classifier, xFeat, y, xTest, yTest):
@@ -52,9 +52,9 @@ def acc(model, classifier, xFeat, y, xTest, yTest):
     accuracy = accuracy_score(yTest['label'], predict_y)
 
     if classifier == 'knn':
-        print("knn percent accuracy: " + str(round(accuracy * 100, 2)) + "%")
+        print("knn percent accuracy: " + str(round(accuracy, 5)))
     else:
-        print("decision tree percent accuracy: " + str(round(accuracy * 100, 2)) + "%")
+        print("decision tree percent accuracy: " + str(round(accuracy, 5)))
     return accuracy
 
 

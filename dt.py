@@ -5,12 +5,12 @@ import math
 
 
 class Node(object):
-    def __init__(self, matrix, array, split=None, left=None, right=None):
+    def __init__(self, matrix, array, left=None, right=None, split=None):
         self.matrix = matrix
         self.array = array
-        self.split = split
         self.left = left
         self.right = right
+        self.split = split
 
 
 def get_gini(array):
