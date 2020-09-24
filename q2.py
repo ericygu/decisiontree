@@ -2,6 +2,7 @@ import argparse
 import numpy as np
 import pandas as pd
 from sklearn import metrics
+from sklearn.model_selection import train_test_split, KFold, ShuffleSplit
 from sklearn.tree import DecisionTreeClassifier
 import time
 
@@ -31,10 +32,14 @@ def holdout(model, xFeat, y, testSize):
     timeElapsed: float
         Time it took to run this function
     """
-    trainAuc = 0
-    testAuc = 0
+    start = time.process_time()
     timeElapsed = 0
-    # TODO fill int
+
+    # initialize x,y Test and Train
+    xTrain, xTest, yTrain, yTest = train_test_split(xFeat, y, test_size=testSize)
+    trainAuc, testAuc = sktree_train_test(model, xTrain, yTrain, xTest, yTest)
+
+    timeElapsed += time.process_time() - start
     return trainAuc, testAuc, timeElapsed
 
 
@@ -66,10 +71,38 @@ def kfold_cv(model, xFeat, y, k):
     timeElapsed: float
         Time it took to run this function
     """
-    trainAuc = 0
-    testAuc = 0
-    timeElapsed = 0
-    # TODO FILL IN
+
+    start = time.time()
+
+    # initialize x,y Test and Train
+    xFeat = np.array(xFeat)
+    y = np.array(y)
+
+    kf = KFold(n_splits=k)
+    kf.get_n_splits(xFeat)
+
+    trainSum = 0
+    testSum = 0
+
+    for train_index, test_index in kf.split(xFeat):
+        # print("TRAIN:", train_index, "TEST:", test_index)
+        xTrain, xTest = xFeat[train_index], xFeat[test_index]
+        yTrain, yTest = y[train_index], y[test_index]
+
+        xTrain = pd.DataFrame(xTrain)
+        xTest = pd.DataFrame(xTest)
+        yTrain = pd.DataFrame(data=yTrain, columns=['label'])
+        yTest = pd.DataFrame(data=yTest, columns=['label'])
+
+        trainAuc, testAuc = sktree_train_test(model, xTrain, yTrain, xTest, yTest)
+        trainSum += trainAuc
+        testSum += testAuc
+
+    trainAuc = (trainSum / k)
+    testAuc = (testSum / k)
+
+    end = time.time()
+    timeElapsed = end - start
     return trainAuc, testAuc, timeElapsed
 
 
@@ -102,10 +135,37 @@ def mc_cv(model, xFeat, y, testSize, s):
     timeElapsed: float
         Time it took to run this function
     """
-    trainAuc = 0
-    testAuc = 0
-    timeElapsed = 0
-    # TODO FILL IN
+    start = time.time()
+
+    # np
+    xFeat = np.array(xFeat)
+    y = np.array(y)
+
+    rs = ShuffleSplit(n_splits=s, test_size=testSize)
+    rs.get_n_splits(xFeat)
+
+    trainSum = 0
+    testSum = 0
+
+    for train_index, test_index in rs.split(xFeat):
+        # print("TRAIN:", train_index, "TEST:", test_index)
+        xTrain, xTest = xFeat[train_index], xFeat[test_index]
+        yTrain, yTest = y[train_index], y[test_index]
+
+        xTrain = pd.DataFrame(xTrain)
+        xTest = pd.DataFrame(xTest)
+        yTrain = pd.DataFrame(data=yTrain, columns=['label'])
+        yTest = pd.DataFrame(data=yTest, columns=['label'])
+
+        trainAuc, testAuc = sktree_train_test(model, xTrain, yTrain, xTest, yTest)
+        trainSum += trainAuc
+        testSum += testAuc
+
+    trainAuc = (trainSum / s)
+    testAuc = (testSum / s)
+
+    end = time.time()
+    timeElapsed = end - start
     return trainAuc, testAuc, timeElapsed
 
 
@@ -197,7 +257,7 @@ def main():
                            ['MCCV w/ 5', aucTrain5, aucVal5, time5],
                            ['MCCV w/ 10', aucTrain6, aucVal6, time6],
                            ['True Test', trainAuc, testAuc, 0]],
-                           columns=['Strategy', 'TrainAUC', 'ValAUC', 'Time'])
+                          columns=['Strategy', 'TrainAUC', 'ValAUC', 'Time'])
     print(perfDF)
 
 
