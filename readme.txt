@@ -13,6 +13,8 @@ https://machinelearningmastery.com/implement-decision-tree-algorithm-scratch-pyt
 
 https://www.youtube.com/watch?v=LDRbO9a6XPU
 
+https://stackoverflow.com/questions/33742588/pandas-split-dataframe-by-column-value
+
 Decision Tree Pseudocode on Piazza ppts
 
 Q2/Q3:

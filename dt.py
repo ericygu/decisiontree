@@ -104,8 +104,8 @@ class DecisionTree(object):
             a_one = split_a[1]
             b_one = split_b[1]
 
-            split_value_a = (len(a_one) / len(arr)) * cri(a_one)
-            split_value_b = (len(b_one) / len(arr)) * cri(b_one)
+            split_value_a = float(len(a_one) / len(arr)) * float(cri(a_one))
+            split_value_b = float(len(b_one) / len(arr)) * float(cri(b_one))
 
             split_value = split_value_a + split_value_b
 
@@ -125,8 +125,8 @@ class DecisionTree(object):
                     elif not len(d_one) >= min_leaf:
                         continue
                     else:
-                        cri_value_c = (len(c_one) / len(arr)) * cri(c_one)
-                        cri_value_d = (len(d_one) / len(arr)) * cri(d_one)
+                        cri_value_c = float(len(c_one) / len(arr)) * float(cri(c_one))
+                        cri_value_d = float(len(d_one) / len(arr)) * float(cri(d_one))
 
                         cri_value = cri_value_c + cri_value_d
 
@@ -153,7 +153,6 @@ class DecisionTree(object):
             elif len(node_matrix[0]) < 1:
                 return node, tree_depth
             else:
-
                 left, right, split = get_split(node_matrix, node_array)
                 min_leaf = self.minLeafSample
 

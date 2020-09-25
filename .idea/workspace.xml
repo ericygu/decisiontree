@@ -5,15 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="62dacdcd-c518-4b1c-9886-de927847f668" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/q2analysiscode.PNG" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/q2analysiscode2.PNG" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/q2analysiscode3.PNG" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/q3analysiscode4.PNG" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.ipynb_checkpoints/pdf-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/.ipynb_checkpoints/pdf-checkpoint.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dt.py" beforeDir="false" afterPath="$PROJECT_DIR$/dt.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pdf.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/pdf.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/q3.py" beforeDir="false" afterPath="$PROJECT_DIR$/q3.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/readme.txt" beforeDir="false" afterPath="$PROJECT_DIR$/readme.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -193,7 +188,7 @@
       <workItem from="1600628723964" duration="5220000" />
       <workItem from="1600649571092" duration="20329000" />
       <workItem from="1600723117847" duration="34502000" />
-      <workItem from="1600900603472" duration="21887000" />
+      <workItem from="1600900603472" duration="29973000" />
     </task>
     <servers />
   </component>
@@ -204,10 +199,10 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="421" y="116" key="FileChooserDialogImpl" timestamp="1600971384638">
+    <state x="421" y="116" key="FileChooserDialogImpl" timestamp="1600989468199">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state x="421" y="116" key="FileChooserDialogImpl/0.0.1280.720@0.0.1280.720" timestamp="1600971384638" />
+    <state x="421" y="116" key="FileChooserDialogImpl/0.0.1280.720@0.0.1280.720" timestamp="1600989468199" />
     <state width="1236" height="220" key="GridCell.Tab.0.bottom" timestamp="1600918634351">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
